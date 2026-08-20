@@ -27,7 +27,7 @@ new #[Layout('layouts.guest')] class extends Component {
             <div class="card border-0 shadow-sm rounded-3">
                 <!-- Header -->
                 <div class="card-header bg-white border-0 text-center pt-3">
-                    <img class="mt-3 mb-2" src="{{ asset('assets/img/kaiadmin/logo_dark.svg') }}" alt="Logo" height="32" />
+                    <img class="mt-3 mb-2" src="{{ asset('assets/img/tdp-dark.png') }}" alt="Logo" height="32" />
                     <p class="text-muted small mb-2">Sign in to your account</p>
                 </div>
 

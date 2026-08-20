@@ -28,6 +28,9 @@
             max-height: 80vh;
             overflow-y: auto;
         }
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
     @stack('styles')
 </head>

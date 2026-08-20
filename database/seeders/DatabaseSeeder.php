@@ -7,6 +7,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,11 +20,13 @@ class DatabaseSeeder extends Seeder
         DB::table('role_has_permissions')->truncate();
         DB::table('model_has_roles')->truncate();
         DB::table('model_has_permissions')->truncate();
-        \Spatie\Permission\Models\Role::truncate();
-        \Spatie\Permission\Models\Permission::truncate();
+        Role::truncate();
+        Permission::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->call(PermissionSeeder::class);
+        $this->call(BankSeeder::class);
+        $this->call(WorkerSeeder::class);
 
         User::updateOrCreate(
             ['email' => 'superadmin@gmail.com'],

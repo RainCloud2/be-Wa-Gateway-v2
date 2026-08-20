@@ -10,7 +10,7 @@ class PermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        $modules = ['permission', 'role', 'user'];
+        $modules = ['permission', 'role', 'user', 'bank', 'worker'];
         $actions = ['create', 'read', 'update', 'delete', 'import', 'export'];
 
         $allPermissions = [];
@@ -21,7 +21,7 @@ class PermissionSeeder extends Seeder
                     ['name' => "$module.$action"],
                     [
                         'group' => $module,
-                        'label' => ucfirst($action) . ' ' . ucfirst($module),
+                        'label' => ucfirst($action).' '.ucfirst($module),
                     ]
                 );
                 $allPermissions[] = $permission;
@@ -32,14 +32,15 @@ class PermissionSeeder extends Seeder
         $role = Role::firstOrCreate(['name' => 'super-admin']);
         $role->syncPermissions($allPermissions);
 
-        // admin → all user.* permissions
+        // admin → all user.* permissions + bank.* & worker.*
         $userPerms = Permission::where('group', 'user')->pluck('name')->toArray();
+        $bankWorkerPerms = Permission::whereIn('group', ['bank', 'worker'])->pluck('name')->toArray();
         $role = Role::firstOrCreate(['name' => 'admin']);
-        $role->syncPermissions($userPerms);
+        $role->syncPermissions(array_merge($userPerms, $bankWorkerPerms));
 
         // user → user.create, user.read, user.import
         $limitedUserPerms = Permission::whereIn('name', [
-            'user.create', 'user.read', 'user.import'
+            'user.create', 'user.read', 'user.import',
         ])->pluck('name')->toArray();
         $role = Role::firstOrCreate(['name' => 'user']);
         $role->syncPermissions($limitedUserPerms);

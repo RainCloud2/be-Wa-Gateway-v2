@@ -63,6 +63,31 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item {{ request()->routeIs('master.*') ? 'active' : '' }}">
+                    <a data-bs-toggle="collapse" href="#master">
+                        <x-lucide-database class="me-2" style="width: 16px; height: 16px;" />
+                        <p>Master Data</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse {{ request()->routeIs('master.*') ? 'show' : '' }}" id="master">
+                        <ul class="nav nav-collapse">
+                            @if(auth()->user()->hasGroupPermission('bank'))
+                            <li class="{{ request()->routeIs('master.banks') ? 'active' : '' }}">
+                                <a href="{{ route('master.banks') }}">
+                                    <span class="sub-item">Banks</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if(auth()->user()->hasGroupPermission('worker'))
+                            <li class="{{ request()->routeIs('master.workers') ? 'active' : '' }}">
+                                <a href="{{ route('master.workers') }}">
+                                    <span class="sub-item">Workers</span>
+                                </a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#logoutConfirmModal">
                         <x-lucide-log-out class="me-2" style="width: 16px; height: 16px;" />
