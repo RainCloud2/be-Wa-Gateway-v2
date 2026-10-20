@@ -25,8 +25,7 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->call(PermissionSeeder::class);
-        $this->call(BankSeeder::class);
-        $this->call(WorkerSeeder::class);
+        $this->call(SettingsSeeder::class);
 
         User::updateOrCreate(
             ['email' => 'superadmin@gmail.com'],
@@ -45,6 +44,15 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
             ]
         )->assignRole('admin');
+
+        User::updateOrCreate(
+            ['email' => 'technician@gmail.com'],
+            [
+                'name' => 'IT Technician',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        )->assignRole('technician');
 
         User::updateOrCreate(
             ['email' => 'user@gmail.com'],

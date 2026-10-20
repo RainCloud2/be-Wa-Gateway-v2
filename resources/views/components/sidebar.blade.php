@@ -63,25 +63,46 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item {{ request()->routeIs('master.*') ? 'active' : '' }}">
-                    <a data-bs-toggle="collapse" href="#master">
-                        <x-lucide-database class="me-2" style="width: 16px; height: 16px;" />
-                        <p>Master Data</p>
+                <li class="nav-item {{ request()->routeIs('wa.*') ? 'active' : '' }}">
+                    <a data-bs-toggle="collapse" href="#wa">
+                        <x-lucide-message-circle class="me-2" style="width: 16px; height: 16px;" />
+                        <p>WhatsApp</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse {{ request()->routeIs('master.*') ? 'show' : '' }}" id="master">
+                    <div class="collapse {{ request()->routeIs('wa.*') ? 'show' : '' }}" id="wa">
                         <ul class="nav nav-collapse">
-                            @if(auth()->user()->hasGroupPermission('bank'))
-                            <li class="{{ request()->routeIs('master.banks') ? 'active' : '' }}">
-                                <a href="{{ route('master.banks') }}">
-                                    <span class="sub-item">Banks</span>
+                            @if(auth()->user()->hasGroupPermission('ticket'))
+                            <li class="{{ request()->routeIs('wa.tickets.*') ? 'active' : '' }}">
+                                <a href="{{ route('wa.tickets.index') }}">
+                                    <span class="sub-item">Tiket</span>
                                 </a>
                             </li>
                             @endif
-                            @if(auth()->user()->hasGroupPermission('worker'))
-                            <li class="{{ request()->routeIs('master.workers') ? 'active' : '' }}">
-                                <a href="{{ route('master.workers') }}">
-                                    <span class="sub-item">Workers</span>
+                            @if(auth()->user()->hasGroupPermission('employee'))
+                            <li class="{{ request()->routeIs('wa.employees') ? 'active' : '' }}">
+                                <a href="{{ route('wa.employees') }}">
+                                    <span class="sub-item">Whitelist</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if(auth()->user()->hasGroupPermission('wa'))
+                            <li class="{{ request()->routeIs('wa.whatsapp') ? 'active' : '' }}">
+                                <a href="{{ route('wa.whatsapp') }}">
+                                    <span class="sub-item">Status WhatsApp</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if(auth()->user()->can('wa.update'))
+                            <li class="{{ request()->routeIs('wa.simulator') ? 'active' : '' }}">
+                                <a href="{{ route('wa.simulator') }}">
+                                    <span class="sub-item">Simulator</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if(auth()->user()->hasGroupPermission('setting'))
+                            <li class="{{ request()->routeIs('wa.settings') ? 'active' : '' }}">
+                                <a href="{{ route('wa.settings') }}">
+                                    <span class="sub-item">Pengaturan</span>
                                 </a>
                             </li>
                             @endif

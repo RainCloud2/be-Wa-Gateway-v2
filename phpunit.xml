@@ -32,5 +32,12 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="WA_DRIVER" value="log"/>
+        <env name="WA_DEBOUNCE_MIN_SECONDS" value="0"/>
+        <env name="WA_DEBOUNCE_MAX_SECONDS" value="0"/>
+        <env name="GATEWAY_TOKEN" value="test-gateway-token"/>
+        <env name="GATEWAY_URL" value="http://gateway.test"/>
+        <env name="GEMINI_API_KEY" value="test-key"/>
+        <env name="GEMINI_MODEL" value="gemini-3.5-flash-lite"/>
     </php>
 </phpunit>

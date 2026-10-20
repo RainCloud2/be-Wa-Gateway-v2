@@ -1,6 +1,11 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use App\Providers\VoltServiceProvider;
+use App\Providers\WaServiceProvider;
+
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\VoltServiceProvider::class,
+    AppServiceProvider::class,
+    VoltServiceProvider::class,
+    WaServiceProvider::class,
 ];
